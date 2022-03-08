@@ -1,0 +1,505 @@
+body {
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    color: #222;
+}
+
+html {
+    box-sizing: border-box;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+
+a {
+    color: #222;
+    text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 
+{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+}
+
+header {
+    padding: 20px;
+}
+
+.page {
+    padding: 0 20px 30px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    width: 100px;
+}
+
+.toolbox > div {
+    display: inline-block;
+    position: relative;
+    padding: 10px;
+}
+
+.toolbox > div i {
+    font-size: 1.4em;
+}
+
+.breadscrumb {
+    margin: 20px 0;
+}
+
+.breadscrumb > * {
+    display: inline-block;
+    margin: 0 3px;
+}
+
+.row {
+    display: flex;
+}
+
+.col-40 {
+    width: 40%;
+}
+
+.col-50 {
+    width: 50%;
+}
+
+.col-60 {
+    width: 60%;
+}
+
+.sidebar {
+    padding-left: 50px;
+    color: #555;
+}
+
+.sidebar p {
+    margin: 0;
+}
+
+.sidebar h2 {
+    margin: 0 0 10px 0;
+    color: #000;
+}
+
+.precio {
+    margin-bottom: 50px;
+}
+
+.descuento {
+    font-weight: 500;
+    font-size: 1.2em;
+    color: #000;
+}
+
+.normal {
+    text-decoration: line-through;
+}
+
+.control {
+    display: flex;
+    align-items: center;
+    padding: 30px 0;
+    border-top: 1px solid rgba(0,0,0,.1);
+    border-bottom: 1px solid rgba(0,0,0,.1);
+}
+
+.color {
+    border-bottom: 0;
+}
+
+.colores {
+    margin-left: 15px;
+    display: flex;
+}
+
+.colores > div {
+    margin: 0 10px;
+    width: 20px;
+    height: 20px;
+    box-shadow: 0 0 3px rgba(0,0,0,.3);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all .3s;
+    position: relative;
+}
+
+.colores > div:after {
+    width: 0%;
+    height: 0%;
+    content: "";
+    border: 1px solid #333;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    border-radius: 50%;
+    transition: all .4s;
+    opacity: 0;
+}
+
+.colores > div.active:after {
+    left: -15%;
+    top: -15%;
+    width: 130%;
+    height: 130%;
+    opacity: .8;
+}
+
+.colores > div:not(.active):hover {
+    transform: scale(1.2);
+}
+
+.colores > div.Red {
+    background-color: #F44846;
+}
+
+.colores > div.Black {
+    background-color: #444;
+}
+
+#carousel li {
+    opacity: .4;
+    cursor: pointer;
+    transition: opacity .3s;
+}
+
+#carousel li.flex-active-slide {
+    opacity: 1;
+}
+
+.tallas {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 15px;
+}
+
+.tallas > div {
+    border: 2px solid #000;
+    padding: 5px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 5px 10px;
+    opacity: .4;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: .9em;
+    font-family: 'Poppins', sans-serif;
+}
+
+.tallas > div.active {
+    opacity: 1;
+}
+
+.talla {
+    align-items: flex-start;
+}
+
+.cantidad {
+    border-top: 0;
+    justify-content: space-between;
+}
+
+.input-number {
+    padding: 10px;
+    border: 1px solid rgba(0,0,0,.3);
+    display: inline-flex;
+    align-items: center;
+    font-size: 1.2em;
+    margin-right: 20px;
+}
+
+.input-number input {
+    margin: 0 5px;
+    border: 0;
+    text-align: center;
+    width: 60px;
+    font-size: 1.1em;
+    font-weight: 500;
+    outline: 0;
+}
+
+.input-number i {
+    cursor: pointer;
+}
+
+.total-price strong {
+    font-size: 1.2em;
+}
+
+.buttons {
+    display: flex;
+    margin: 30px 0 0;
+}
+
+.buttons button:first-child {
+    margin-right: 10px;
+}
+
+.buttons button:last-child {
+    margin-left: 10px;
+}
+
+.btn {
+    display: inline-block;
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+    cursor: pointer;
+    border: 0;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+}
+
+.btn-secondary {
+    background-color: #f3f3f3;
+}
+
+.btn-primary {
+    background-color: #000;
+    color: #fff;
+}
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .3s;
+}
+
+.popup .content {
+    width: 800px;
+    position: relative;
+    transform: scale(.7);
+    transition: all .3s;
+    pointer-events: none;
+}
+
+.showPopup .popup {
+    opacity: 1;
+    visibility: visible;
+}
+
+.showPopup .content {
+    transform: scale(1);
+}
+
+.popup .content .row > div {
+    background: #fff;
+}
+
+.popup .content > .row > div > h3,
+.popup .content > .row > div > h4 
+{
+    margin-top: 0;
+}
+
+img {
+    max-width: 100%;
+}
+
+.active-orden {
+    padding: 30px;
+    border-right: 1px solid rgba(0,0,0,.2);
+    transition: all .3s;
+    transition-delay: .06s;
+    pointer-events: auto;
+}
+
+.no-trans .active-orden,
+.no-trans .carrito
+{
+    transition: none;
+}
+
+.carrito {
+    padding: 30px;
+    text-align: center;
+    transition: all .3s;
+    transition-delay: .06s;
+    pointer-events: auto;
+}
+
+.active-orden .thumb {
+    margin-right: 25px;
+}
+
+.active-orden h4 {
+    margin-bottom: 10px;
+}
+
+.active-orden h3 {
+    font-size: 1.6em;
+}
+
+.close-popup {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+}
+
+.details {
+    padding-top: 10px;
+}
+
+.carlist > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+    padding: 15px;
+    transition: all .3s;
+    border-bottom: 1px solid rgba(0,0,0,.2);
+}
+
+.carlist > div:hover {
+    background-color: #f9f9f9;
+}
+
+.carlist > div.active {
+    outline: 1px solid rgba(0,0,0,.6);
+    border-color: transparent;
+}
+
+.carlist > div h5 {
+    font-size: 1em;
+    cursor: pointer;
+    margin: 0;
+}
+
+.carlist > div p {
+    margin: 0;
+}
+
+.subtitle {
+    display: flex;
+    font-size: .9em;
+    color: #555;
+}
+
+.carlist > div .subtitle p {
+    margin-right: 10px;
+}
+
+.carlist > div i {
+    cursor: pointer;
+}
+
+.cart-total {
+    text-align: right;
+    margin-top: 20px;
+}
+
+.contador {
+    position: absolute;
+    right: -5px;
+    top: -5px;
+    background-color: #F44846;
+    color: #fff;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: .8em;
+    font-family: 'Poppins', sans-serif;
+}
+
+.carrito-icon {
+    cursor: pointer;
+}
+
+.cart-only .active-orden {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(30%);
+}
+
+.cart-only .carrito {
+    transform: translateX(-70%);
+}
+
+@media screen and (max-width: 900px) {
+
+    .flex-direction-nav {
+        display: none;
+    }
+
+}
+
+@media screen and (max-width: 700px) {
+
+    .main-col,
+    .sidebar 
+    {
+        width: 100%;
+    }
+
+    .sidebar {
+        padding-left: 0;
+        margin-top: 50px;
+    }
+
+    .page > .container > .row {
+        display: block;
+    }
+
+    .buttons {
+        display: block;
+    }
+
+    .buttons button:first-child {
+        margin: 0 0 10px 0;
+    }
+
+    .buttons button:last-child {
+        margin: 0;
+    }
+
+    .total-price {
+        font-size: .8em;
+    }
+
+    .input-number {
+        font-size: .9em;
+        padding: 6px;
+    }
+
+    .input-number input {
+        width: 40px;
+    }
+
+    .popup > .content > .row {
+        display: block;
+    }
+
+    .popup > .content > .row > div {
+        width: 100%;
+    }
+
+}

@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <title>Adidas Shop Store</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="iconfont/style.css">
+    <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="css/main.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <meta name="theme-color" content="#fafafa">
+</head>
+
+<body>
+
+    <div id="app">
+
+        <header>
+
+            <div class="container">
+
+                <img class="logo" src="img/icon-adidas-logo.svg" alt="Logo Adidas" />
+
+                <div class="toolbox">
+
+                    <div class="favoritos">
+
+                        <i class="icon-heart"></i>
+
+                    </div>
+
+                    <div @click="openCart" class="carrito-icon">
+
+                        <i class="icon-shopping-cart"></i>
+
+                        <div v-if="carrito.length" class="contador"> {{ carrito.length }} </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+        <div class="page">
+
+            <div class="container">
+
+                <div class="breadscrumb">
+
+                    <a href="#">Catálogo</a> / <a href="#">Hombres</a> / <strong>{{ product.titulo }}</strong>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="main-col col-50">
+
+                        <div id="slider" class="flexslider">
+
+                            <ul class="slides">
+
+                                <li>
+                                    <img v-show="product.color == 'Red'" src="img/rojo-1.jpg" />
+                                    <img v-show="product.color == 'blanco'" src="img/blanco-1.jpg" />
+                                    <img v-show="product.color == 'Black'" src="img/azul-1.jpg" />
+                                </li>
+
+                                <li>
+                                    <img v-show="product.color == 'Red'" src="img/rojo-2.jpg" />
+                                    <img v-show="product.color == 'blanco'" src="img/blanco-2.jpg" />
+                                    <img v-show="product.color == 'Black'" src="img/azul-2.jpg" />
+                                </li>
+
+                                <li>
+                                    <img v-show="product.color == 'Red'" src="img/rojo-3.jpg" />
+                                    <img v-show="product.color == 'blanco'" src="img/blanco-3.jpg" />
+                                    <img v-show="product.color == 'Black'" src="img/azul-3.jpg" />
+                                </li>
+
+                                <li>
+                                    <img v-show="product.color == 'Red'" src="img/rojo-4.jpg" />
+                                    <img v-show="product.color == 'blanco'" src="img/blanco-4.jpg" />
+                                    <img v-show="product.color == 'Black'" src="img/azul-4.jpg" />
+                                </li>
+                                
+                            </ul>
+
+                        </div>
+
+                        <div id="carousel" class="flexslider">
+                            
+                            <ul class="slides">
+
+                                <li data-thumb="img/rojo-1.jpg">
+                                    <img v-show="product.color == 'Red'" src="img/rojo-1.jpg" />
+                                    <img v-show="product.color == 'blanco'" src="img/blanco-1.jpg" />
+                                    <img v-show="product.color == 'Black'" src="img/azul-1.jpg" />
+                                </li>
+
+                                <li data-thumb="img/rojo-2.jpg">
+                                    <img v-show="product.color == 'Red'" src="img/rojo-2.jpg" />
+                                    <img v-show="product.color == 'blanco'" src="img/blanco-2.jpg" />
+                                    <img v-show="product.color == 'Black'" src="img/azul-2.jpg" />
+                                </li>
+
+                                <li data-thumb="img/rojo-3.jpg">
+                                    <img v-show="product.color == 'Red'" src="img/rojo-3.jpg" />
+                                    <img v-show="product.color == 'blanco'" src="img/blanco-3.jpg" />
+                                    <img v-show="product.color == 'Black'" src="img/azul-3.jpg" />
+                                </li>
+
+                                <li data-thumb="img/rojo-4.jpg">
+                                    <img v-show="product.color == 'Red'" src="img/rojo-4.jpg" />
+                                    <img v-show="product.color == 'blanco'" src="img/blanco-4.jpg" />
+                                    <img v-show="product.color == 'Black'" src="img/azul-4.jpg" />
+                                </li>
+                                
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+                    <div class="sidebar col-50">
+
+                        <p>by Nike x Alix</p>
+
+                        <h2>{{ product.titulo }}</h2>
+
+                        <div class="precio">
+
+                            <span class="descuento">$ {{ precioFinal( product, true, true) }}</span>
+
+                            <span class="normal">$ {{ precioFinal( product, true, false) }}</span>
+
+                        </div>
+
+                        <div class="control color">
+
+                            <p>Color:</p>
+
+                            <div class="colores">
+
+                                <div @click="changeColor" :data-color="color" v-for="color in colores" :class="[color,{
+                                    active: color == product.color
+                                }]"></div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="control talla">
+
+                            <p>Talla:</p>
+
+                            <div class="tallas">
+
+                                <div @click="changeTalla" :data-talla="talla" v-for="talla in tallas" :class="{
+                                    active: talla == product.talla
+                                }">{{ talla }}</div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="control cantidad">
+
+                            <div class="input-number">
+
+                                <i @click="remove" class="icon-minus"></i>
+
+                                <input readonly type="text" :value="product.cantidad" />
+
+                                <i @click="add" class="icon-plus" ></i>
+
+                            </div>
+
+                            <div class="total-price">
+
+                                <span>Precio total:</span>
+
+                                <strong>$ {{ precioFinal( product, false, true ) }}</strong>
+
+                            </div>
+
+                        </div>
+
+                        <div class="buttons">
+
+                            <button class="btn btn-secondary">Agregar a favoritos</button>
+
+                            <button @click="addToCart" class="btn btn-primary">Agregar al carrito</button>
+
+                        </div>
+
+                    </div>
+
+                </div><!-- /row -->
+
+            </div><!-- /container -->
+
+        </div><!-- /page -->
+
+        <div @click="backClick" class="popup">
+
+            <div class="content">
+
+                <div class="row">
+
+                    <div class="col-60 active-orden">
+
+                        <h4 class="agregado">Producto agregado al carrito de compras</h4>
+
+                        <h3>{{ ordenActiva.titulo }}</h3>
+                        
+                        <div class="row">
+
+                            <div class="col-50 thumb">
+
+                                <img v-show="ordenActiva.color == 'Red'" src="img/rojo-1.jpg" />
+                                <img v-show="ordenActiva.color == 'Black'" src="img/azul-1.jpg" />
+
+                            </div>
+
+                            <div class="col-50 details">
+
+                                <p><strong>Color:</strong> {{ ordenActiva.color }}</p>
+
+                                <p><strong>Talla:</strong> {{ ordenActiva.talla }}</p>
+
+                                <p><strong>Cantidad:</strong> {{ ordenActiva.cantidad }}</p>
+
+                                <p><strong>Total:</strong> $ {{ precioFinal( ordenActiva, false, true ) }}</p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-40 carrito">
+
+                        <h3>Carrito de compras</h3>
+
+                        <div class="carlist">
+
+                            <div v-for="(orden, index) in carrito">
+
+                                <div>
+
+                                    <h5 @click="setOrdenActive(orden, index)">{{ orden.titulo }}</h5>
+
+                                    <div class="subtitle">
+
+                                        <p>x {{ orden.cantidad }}</p>
+
+                                        <p>subtotal: $ {{ precioFinal( orden, false, true ) }}</p>
+
+                                    </div>
+
+                                </div>
+
+                                <i @click="borrarOrden" title="borrar" class="icon-trash-2"></i>
+
+                            </div>
+
+                        </div><!-- /cartlist -->
+
+                        <div class="cart-total">
+
+                            <strong>Total carrito:</strong> $ {{ totalCarrito }}
+
+                        </div>
+
+                        <i @click="closePopup" class="icon-clear close-popup"></i>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div><!-- /app -->
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script defer src="js/jquery.flexslider.js"></script>
+    <script defer src="js/index.js"></script>
+
+</body>
